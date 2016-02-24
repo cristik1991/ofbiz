@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-engine-xml>
+    <SecurityPermission description="View operations in the MyFirstDemo Component." permissionId="MYFIRSTDEMO_VIEW"/>
+    <SecurityPermission description="Create operations in the MyFirstDemo Component." permissionId="MYFIRSTDEMO_CREATE"/>
+    <SecurityPermission description="Update operations in the MyFirstDemo Component." permissionId="MYFIRSTDEMO_UPDATE"/>
+    <SecurityPermission description="Delete operations in the MyFirstDemo Component." permissionId="MYFIRSTDEMO_DELETE"/>
+    <SecurityPermission description="ALL operations in the MyFirstDemo Component." permissionId="MYFIRSTDEMO_ADMIN"/>
+
+    <SecurityGroupPermission groupId="SUPER" permissionId="MYFIRSTDEMO_ADMIN"/>
+
+</entity-engine-xml>

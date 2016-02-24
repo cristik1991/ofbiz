@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-suite suite-name="MyFirstDemotests"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/test-suite.xsd">
+		<test-case case-name="ofbizTest">
+			<junit-test-suite class-name="org.ofbiz.demo.test.EntityTestCase"/>
+		</test-case>
+
+</test-suite>

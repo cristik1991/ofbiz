@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-engine-xml>
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="MYFIRSTDEMO_ADMIN"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="MYFIRSTDEMO_CREATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="MYFIRSTDEMO_DELETE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="MYFIRSTDEMO_UPDATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="MYFIRSTDEMO_VIEW"/>
+    <SecurityGroupPermission groupId="VIEWADMIN" permissionId="MYFIRSTDEMO_VIEW"/>
+    <SecurityGroupPermission groupId="BIZADMIN" permissionId="MYFIRSTDEMO_ADMIN"/>
+</entity-engine-xml>
