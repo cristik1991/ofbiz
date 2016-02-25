@@ -9,4 +9,103 @@
     <copyright></copyright>
     <version></version>
 
+	<!-- 国家 -->
+	<entity entity-name="Country" package-name="org.ofbiz.demo" table-name="demo_country">
+		<field name="countryId" type="id-ne"></field>
+		<field name="countryName" type="name"></field>
+		<prim-key field="countryId"/>
+	</entity>
+	
+	<!-- 联赛 -->
+	<entity entity-name="League" package-name="org.ofbiz.demo" table-name="demo_league">
+		<field name="leagueId" type="id-ne"></field>
+		<field name="leagueName" type="name"></field>
+		<field name="countryId" type="id-ne"></field>
+		<field name="level" type="name">
+			<description>A[顶级],B[乙级]</description>
+		</field>
+		<prim-key field="leagueId"/>
+		<relation rel-entity-name="Country" type="one" fk-name="FK_LEAGUE_COUNTRY">
+			<key-map field-name="countryId" rel-field-name="countryId"/>
+		</relation>
+	</entity>
+	
+	<!-- 赛季 -->
+	<entity entity-name="Season" package-name="org.ofbiz.demo" table-name="demo_season">
+		<field name="seasonId" type="id-ne"></field>	
+		<field name="seasonName" type="name"></field>	
+		<field name="leagueId" type="id-ne"></field>	
+		<field name="fromDate" type="date"></field>
+		<field name="thruDate" type="date"></field>
+		<prim-key field="seasonId"/>
+		<relation rel-entity-name="League" type="one" fk-name="FK_SEASON_LEAGUE">
+			<key-map field-name="leagueId" rel-field-name="leagueId"/>
+		</relation>
+	</entity>
+	
+	<!-- 赛季参赛球队 -->
+	<entity entity-name="SeasonTeam" package-name="org.ofbiz.demo" table-name="demo_season_tem">
+		<field name="seasonId" type="id-ne"></field>
+		<field name="teamId" type="id-ne"></field>
+		<field name="fromDate" type="date"></field>
+		<field name="thruDate" type="date"></field>
+		<prim-key field="seasonId"/>
+		<prim-key field="teamId"/>
+		<prim-key field="fromDate"/>
+		<relation rel-entity-name="Season" type="one" fk-name="FK_ST_SEASON">
+			<key-map field-name="seasonId" rel-field-name="seasonId"/>
+		</relation>
+		<relation rel-entity-name="Team" type="one" fk-name="FK_ST_TEAM">
+			<key-map field-name="teamId" rel-field-name="teamId"/>
+		</relation>
+	</entity>
+	
+	
+	<!-- 球队 -->
+	<entity entity-name="Team" package-name="org.ofbiz.demo" table-name="demo_team">
+		<field name="teamId" type="id-ne"></field>
+		<field name="teamName" type="name"></field>
+		<field name="foundedDate" type="date"></field>
+		<field name="stadiumName" type="name"></field>
+		<field name="stadiumCapacity" type="numeric"></field>
+		<field name="officalWebSite" type="long-varchar"></field>
+		<field name="countryId" type="id-ne"></field>
+		<prim-key field="teamId"/>
+		<relation rel-entity-name="Country" type="one" fk-name="FK_TEAM_COUNTRY">
+			<key-map field-name="countryId" rel-field-name="countryId"/>
+		</relation>
+	</entity>
+	
+	<!-- 球员 -->
+	<entity entity-name="Player" package-name="org.ofbiz.demo" table-name="demo_player">
+		<field name="playerId" type="id-ne"></field>
+		<field name="playerName" type="name"></field>
+		<field name="birthday" type="date"></field>
+		<field name="height" type="name"></field>
+		<field name="weight" type="numeric"></field>
+		<field name="position" type="long-varchar"></field>
+		<field name="countryId" type="id-ne"></field>
+		<prim-key field="playerId"/>
+		<relation rel-entity-name="Country" type="one" fk-name="FK_PLAYER_COUNTRY">
+			<key-map field-name="countryId" rel-field-name="countryId"/>
+		</relation>
+	</entity>
+	
+	<!-- 球队球员关系 -->
+	<entity entity-name="TeamPlayer" package-name="org.ofbiz.demo" table-name="demo_team_player">
+		<field name="playerId" type="id-ne"></field>
+		<field name="teamId" type="id-ne"></field>
+		<field name="fromDate" type="date"></field>
+		<field name="thruDate" type="date"></field>
+		<prim-key field="playerId"/>
+		<prim-key field="teamId"/>
+		<prim-key field="fromDate"/>
+		<relation rel-entity-name="Player" type="one" fk-name="FK_TP_PLAYER">
+			<key-map field-name="playerId" rel-field-name="playerId"/>
+		</relation>
+		<relation rel-entity-name="Team" type="one" fk-name="FK_TP_TEAM">
+			<key-map field-name="teamId" rel-field-name="teamId"/>
+		</relation>
+	</entity>
+
 </entitymodel>

@@ -65,6 +65,9 @@ public class ControlEventListener implements HttpSessionListener {
         Debug.logInfo("Creating session: " + session.getId(), module);
     }
 
+    /**
+     * 用户注销登陆
+     */
     public void sessionDestroyed(HttpSessionEvent event) {
         HttpSession session = event.getSession();
 

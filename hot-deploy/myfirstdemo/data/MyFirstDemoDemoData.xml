@@ -1,4 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <entity-engine-xml>
-
+	<!-- 国家 -->
+	<Country countryId="1000" countryName="德国" />
+	<Country countryId="1001" countryName="英格兰" />
+	<Country countryId="1002" countryName="西班牙" />
+	<Country countryId="1003" countryName="意大利" />
+	<Country countryId="1004" countryName="法国" />
+	<!-- 联赛 -->
+	<League leagueId="1000" leagueName="德甲联赛" level="A" countryId="1000"/>
+	<League leagueId="1001" leagueName="英超联赛" level="A" countryId="1001"/>
+	<League leagueId="1002" leagueName="西甲联赛" level="A" countryId="1002"/>
+	<League leagueId="1003" leagueName="意甲联赛" level="A" countryId="1003"/>
+	<League leagueId="1004" leagueName="法超联赛" level="A" countryId="1004"/>
+	<!-- 赛季 -->
+	<Season seasonId="1000" seasonName="2013-2014赛季" leagueId="1000" fromDate="2013-08-01" thruDate="2014-05-01"/>
+	<Season seasonId="1001" seasonName="2013-2014赛季" leagueId="1001" fromDate="2013-08-01" thruDate="2014-05-01"/>
+	<Season seasonId="1002" seasonName="2013-2014赛季" leagueId="1002" fromDate="2013-08-01" thruDate="2014-05-01"/>
+	<Season seasonId="1003" seasonName="2013-2014赛季" leagueId="1003" fromDate="2013-08-01" thruDate="2014-05-01"/>
+	<Season seasonId="1004" seasonName="2013-2014赛季" leagueId="1004" fromDate="2013-08-01" thruDate="2014-05-01"/>
+	<!-- 球队 -->
+	<Team teamId="1000" teamName="拜仁慕尼黑" foundedDate="1900-02-27" stadiumName="慕尼黑安联球场"
+	 stadiumCapacity="71000" officalWebSite="" countryId="1000"></Team>
+	<!-- 球员 -->
+	<Player palyerId="1000" playerName="穆勒" birthday="1989-09-13" height="188" weight="70" position="forward" countryId="1000"/>
 </entity-engine-xml>

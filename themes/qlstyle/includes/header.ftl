@@ -13,6 +13,7 @@
 	<script src="<@ofbizContentUrl>/qlstyle/adminlte/plugins/datatables/dataTables.bootstrap.min.js</@ofbizContentUrl>"></script>
     <script src="<@ofbizContentUrl>/qlstyle/adminlte/bootstrap/js/bootstrap.min.js</@ofbizContentUrl>"></script>
     <script src="<@ofbizContentUrl>/qlstyle/adminlte/dist/js/app.min.js</@ofbizContentUrl>"></script>
+    <script src="<@ofbizContentUrl>/qlstyle/adminlte/plugins/iCheck/icheck.min.js</@ofbizContentUrl>"></script>
     
     <link rel="stylesheet" href="<@ofbizContentUrl>/qlstyle/adminlte/bootstrap/css/bootstrap.min.css</@ofbizContentUrl>">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -20,6 +21,7 @@
     <link rel="stylesheet" href="<@ofbizContentUrl>/qlstyle/adminlte/dist/css/AdminLTE.min.css</@ofbizContentUrl>">
     <link rel="stylesheet" href="<@ofbizContentUrl>/qlstyle/adminlte/dist/css/skins/_all-skins.min.css</@ofbizContentUrl>">
     <link rel="stylesheet" href="<@ofbizContentUrl>/qlstyle/adminlte/plugins/datatables/dataTables.bootstrap.css</@ofbizContentUrl>">
+    <link rel="stylesheet" href="<@ofbizContentUrl>/qlstyle/adminlte/plugins/iCheck/square/blue.css</@ofbizContentUrl>">
   </head>
     <body class="hold-transition skin-blue fixed sidebar-mini">
     <!-- Site wrapper -->
@@ -150,7 +152,7 @@
                       <a href="#" class="btn btn-default btn-flat">Profile</a>
                     </div>
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                      <a href="<@ofbizUrl>logout</@ofbizUrl>" class="btn btn-default btn-flat">${uiLabelMap.CommonLogout}</a>
                     </div>
                   </li>
                 </ul>

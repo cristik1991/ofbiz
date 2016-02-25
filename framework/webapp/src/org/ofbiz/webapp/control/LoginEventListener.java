@@ -39,6 +39,9 @@ public class LoginEventListener implements HttpSessionListener {
         //HttpSession session = event.getSession();
     }
 
+    /**
+     * 用户注销登陆
+     */
     public void sessionDestroyed(HttpSessionEvent event) {
         HttpSession session = event.getSession();
         LoginWorker.cleanupExternalLoginKey(session);

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="cristik1991" name="MyFirstDemotests" skipped="0" tests="1" time="0.012" timestamp="2016-02-24T09:30:08">
+  <properties />
+  <testcase classname="org.ofbiz.demo.test.EntityTestCase" name="testIt" time="0.008" />
+</testsuite>

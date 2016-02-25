@@ -8,6 +8,7 @@
                 <set field="headerItem" value="main"/><!-- this highlights the selected menu-item with name "main" -->
             </actions>
             <widgets>
+            	<label>${parameters.mainDecoratorLocation}</label>
                 <decorator-screen name="MyFirstDemoCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
                     </decorator-section>
@@ -15,5 +16,4 @@
             </widgets>
         </section>
     </screen>
-
 </screens>

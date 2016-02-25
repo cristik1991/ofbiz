@@ -32,7 +32,7 @@ under the License.
     <screen name="countries">
         <section>
             <actions>
-                <property-to-field field="defaultCountryGeoId" resource="general" property="country.geo.id.default" default="USA"/>
+                <property-to-field field="defaultCountryGeoId" resource="general" property="country.geo.id.default" default="CN"/>
             </actions>
             <widgets>
                 <platform-specific><html><html-template location="component://common/webcommon/includes/countries.ftl"/></html></platform-specific>
@@ -173,111 +173,14 @@ under the License.
         </section>
     </screen>
 
-	<screen name="GlobalDecorator_bak">
-        <section>
-            <widgets>
-                <include-screen name="GlobalActions" />
-                <section>
-                    <actions>
-                        <set field="layoutSettings.commonHeaderImageLinkUrl" from-field="layoutSettings.commonHeaderImageLinkUrl" default-value="main" global="true" />
-                        <set field="iconsLocation" from-field="layoutSettings.VT_ICONS_LOC[0]" default-value="/images/icons/famfamfam" global="true" />
-                        <set field="headerTemplateLocation" from-field="layoutSettings.VT_HDR_TMPLT_LOC[0]" />
-                        <set field="footerTemplateLocation" from-field="layoutSettings.VT_FTR_TMPLT_LOC[0]" />
-                        <set field="appbarTemplateLocation" from-field="layoutSettings.VT_NAV_TMPLT_LOC[0]" />
-                        <set field="appbarOpenTemplateLocation" from-field="layoutSettings.VT_NAV_OPEN_TMPLT[0]" />
-                        <set field="appbarCloseTemplateLocation" from-field="layoutSettings.VT_NAV_CLOSE_TMPLT[0]" />
-                        <set field="messagesTemplateLocation" from-field="layoutSettings.VT_MSG_TMPLT_LOC[0]" />
-                        <set field="layoutSettings.suppressTab" value="ofbizsetup"/><!-- diseable ofbiz setup by default -->
-                    </actions>
-                    <widgets />
-                </section>
-                <!-- head -->
-               <section>
-                    <widgets>
-                        <platform-specific>
-                            <html>
-                                <html-template location="${headerTemplateLocation}" />
-                            </html>
-                        </platform-specific>
-                        <section name="Render-Main-Nav">
-                            <widgets>
-                                <platform-specific>
-                                    <html>
-                                        <html-template location="${appbarTemplateLocation}" />
-                                    </html>
-                                </platform-specific>
-                            </widgets>
-                        </section>
-                    </widgets>
-                </section>
-                <!-- body -->
-                <container style="contentarea">
-                    <decorator-section-include name="pre-body" />
-                    <container id="column-container">
-                        <section>
-                            <widgets>
-                                <container id="content-main-section">
-                                	<include-screen name="body1"/>
-                                    <decorator-section-include name="body" />
-                                    <include-screen name="body2"/>
-                                </container>
-                            </widgets>
-                        </section>
-                        <container style="clear"></container>
-                    </container>
-                </container>
-                <!-- footer -->
-                <section>
-                    <widgets>
-                        <section name="Render-Footer">
-                            <widgets>
-                                <platform-specific>
-                                    <html>
-                                        <html-template location="${applicationFooterTemplate}" />
-                                    </html>
-                                </platform-specific>
-                            </widgets>
-                        </section>
-                    </widgets>
-                </section>
-            </widgets>
-        </section>
-    </screen>
-    
-    <screen name="body1">
-    	<section>
-          <widgets>
-              <section name="bodybegin">
-                  <widgets>
-                      <platform-specific>
-                          <html>
-                              <html-template location="component://qlstyle/includes/bodybegin.ftl" />
-                          </html>
-                      </platform-specific>
-                  </widgets>
-              </section>
-          </widgets>
-      	</section>
-    </screen>
-    <screen name="body2">
-    	<section>
-          <widgets>
-              <section name="bodyend">
-                  <widgets>
-                      <platform-specific>
-                          <html>
-                              <html-template location="component://qlstyle/includes/bodyend.ftl" />
-                          </html>
-                      </platform-specific>
-                  </widgets>
-              </section>
-          </widgets>
-      	</section>
-    </screen>
-    
-    
+    <!-- Global decorator for General Screens/Pages -->
     <screen name="GlobalDecorator">
         <section>
+        	<condition>
+        		<not>
+        			<if-empty field="userLogin"/>
+        		</not>
+        	</condition>
             <widgets>
                 <include-screen name="GlobalActions" />
                 <section>
@@ -294,6 +197,7 @@ under the License.
                     </actions>
                     <widgets />
                 </section>
+                <!-- 后台头部菜单 -->
                 <section>
                     <condition>
                         <if-empty field="parameters.ajaxUpdateEvent" />
@@ -329,6 +233,7 @@ under the License.
                         </section>
                     </widgets>
                 </section>
+                <!-- 后台头部结尾 -->
                 <section>
                     <condition>
                         <if-empty field="parameters.ajaxUpdateEvent" />
@@ -464,199 +369,13 @@ under the License.
                     </widgets>
                 </section>
             </widgets>
-        </section>
-    </screen>
-    
-
-    <!-- Global decorator for General Screens/Pages -->
-    <screen name="GlobalDecorator_copy">
-        <section>
-            <widgets>
-                <include-screen name="GlobalActions" />
-                <section>
-                    <actions>
-                        <set field="layoutSettings.commonHeaderImageLinkUrl" from-field="layoutSettings.commonHeaderImageLinkUrl" default-value="main" global="true" />
-                        <set field="iconsLocation" from-field="layoutSettings.VT_ICONS_LOC[0]" default-value="/images/icons/famfamfam" global="true" />
-                        <set field="headerTemplateLocation" from-field="layoutSettings.VT_HDR_TMPLT_LOC[0]" />
-                        <set field="footerTemplateLocation" from-field="layoutSettings.VT_FTR_TMPLT_LOC[0]" />
-                        <set field="appbarTemplateLocation" from-field="layoutSettings.VT_NAV_TMPLT_LOC[0]" />
-                        <set field="appbarOpenTemplateLocation" from-field="layoutSettings.VT_NAV_OPEN_TMPLT[0]" />
-                        <set field="appbarCloseTemplateLocation" from-field="layoutSettings.VT_NAV_CLOSE_TMPLT[0]" />
-                        <set field="messagesTemplateLocation" from-field="layoutSettings.VT_MSG_TMPLT_LOC[0]" />
-                        <set field="layoutSettings.suppressTab" value="ofbizsetup"/><!-- diseable ofbiz setup by default -->
-                    </actions>
-                    <widgets />
-                </section>
-                <section>
-                    <condition>
-                        <if-empty field="parameters.ajaxUpdateEvent" />
-                    </condition>
-                    <widgets>
-                        <!-- render header -->
-                        <platform-specific>
-                            <html>
-                                <html-template location="${headerTemplateLocation}" />
-                            </html>
-                        </platform-specific>
-                        <!-- render appbar or its opening part -->
-                        <section name="Render-Main-Nav">
-                            <condition>
-                                <not>
-                                    <if-empty field="appbarOpenTemplateLocation" />
-                                </not>
-                            </condition>
-                            <widgets>
-                                <platform-specific>
-                                    <html>
-                                        <html-template location="${appbarOpenTemplateLocation}" />
-                                    </html>
-                                </platform-specific>
-                            </widgets>
-                            <fail-widgets>
-                                <platform-specific>
-                                    <html>
-                                        <html-template location="${appbarTemplateLocation}" />
-                                    </html>
-                                </platform-specific>
-                            </fail-widgets>
-                        </section>
-                    </widgets>
-                </section>
-                <section>
-                    <condition>
-                        <if-empty field="parameters.ajaxUpdateEvent" />
-                    </condition>
-                    <widgets>
-                        <!-- render appheader: both menu widget style and ftl template style menus are supported-->
-                        <section name="Render-App-Nav">
-                            <condition>
-                                <not>
-                                    <if-empty field="userLogin" />
-                                </not>
-                            </condition>
-                            <widgets>
-                                <section>
-                                    <condition>
-                                        <not>
-                                            <if-empty field="appheaderTemplate" />
-                                        </not>
-                                    </condition>
-                                    <widgets>
-                                        <platform-specific>
-                                            <html>
-                                                <html-template location="${appheaderTemplate}" />
-                                            </html>
-                                        </platform-specific>
-                                    </widgets>
-                                    <fail-widgets>
-                                        <section>
-                                            <condition>
-                                                <not>
-                                                    <if-empty field="parameters.applicationTitle" />
-                                                </not>
-                                            </condition>
-                                            <widgets>
-                                                <label style="apptitle">${parameters.applicationTitle}</label>
-                                            </widgets>
-                                        </section>
-                                        <section>
-                                            <condition>
-                                                <not>
-                                                    <if-empty field="applicationMenuLocation" />
-                                                </not>
-                                            </condition>
-                                            <widgets>
-                                                <include-menu name="${applicationMenuName}" location="${applicationMenuLocation}" />
-                                            </widgets>
-                                        </section>
-                                    </fail-widgets>
-                                </section>
-                            </widgets>
-                            <fail-widgets>
-                                <!-- better to just not include this, the CommonAppBarMenu doesn't show anything by default if the user isn't logged in, causing a funny empty menu: <include-menu name="CommonAppBarMenu" location="component://common/widget/CommonMenus.xml"/> -->
-                            </fail-widgets>
-                        </section>
-                    </widgets>
-                </section>
-                <!-- render the appbar closing part -->
-                <section>
-                    <condition>
-                        <and>
-                            <if-empty field="parameters.ajaxUpdateEvent" />
-                            <not>
-                                <if-empty field="appbarCloseTemplateLocation" />
-                            </not>
-                        </and>
-                    </condition>
-                    <widgets>
-                        <platform-specific>
-                            <html>
-                                <html-template location="${appbarCloseTemplateLocation}" />
-                            </html>
-                        </platform-specific>
-                    </widgets>
-                </section>
-                <!-- render messages -->
-                <platform-specific>
-                    <html>
-                        <html-template location="${messagesTemplateLocation}" />
-                    </html>
-                </platform-specific>
-                <!-- render content area -->
-                <container style="contentarea">
-                    <decorator-section-include name="pre-body" />
-                    <container id="column-container">
-                        <section>
-                            <condition>
-                                <if-empty-section section-name="left-column" />
-                            </condition>
-                            <widgets>
-                                <container id="content-main-section">
-                                    <decorator-section-include name="body" />
-                                </container>
-                            </widgets>
-                            <fail-widgets>
-                                <container style="left">
-                                    <decorator-section-include name="left-column" />
-                                </container>
-                                <container id="content-main-section" style="leftonly">
-                                    <container style="no-clear" id="centerdiv">
-                                        <decorator-section-include name="body" />
-                                    </container>
-                                </container>
-                            </fail-widgets>
-                        </section>
-                        <container style="clear"></container>
-                    </container>
-                </container>
-                <section>
-                    <condition>
-                        <if-empty field="parameters.ajaxUpdateEvent" />
-                    </condition>
-                    <widgets>
-                        <!-- render footer -->
-                        <section name="Render-Footer">
-                            <condition>
-                                <if-empty field="applicationFooterTemplate" />
-                            </condition>
-                            <widgets>
-                                <platform-specific>
-                                    <html>
-                                        <html-template location="${footerTemplateLocation}" />
-                                    </html>
-                                </platform-specific>
-                            </widgets>
-                            <fail-widgets>
-                                <platform-specific>
-                                    <html>
-                                        <html-template location="${applicationFooterTemplate}" />
-                                    </html>
-                                </platform-specific>
-                            </fail-widgets>
-                        </section>
-                    </widgets>
-                </section>
-            </widgets>
+            <fail-widgets>
+            	<platform-specific>
+            		<html>
+            			<html-template location="component://qlstyle/includes/login.ftl"/>
+            		</html>
+            	</platform-specific>
+            </fail-widgets>
         </section>
     </screen>
 
