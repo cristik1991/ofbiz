@@ -150,40 +150,68 @@ under the License.
             </actions>
             <widgets>
                <section>
-                  <condition>
-                     <not><if-empty field="globalContext.productStore"/></not>
-                  </condition>
-                  <widgets>
-                     <platform-specific><html><html-template location="component://ecommerce/webapp/ecommerce/includes/headerHead.ftl"/></html></platform-specific>
-                     <platform-specific><html><html-template location="component://common/webcommon/includes/openhtmlbody.ftl"/></html></platform-specific>
-                     <!-- render header -->
-                     <container id="header"><platform-specific><html><html-template location="${headerTemplateLocation}"/></html></platform-specific></container>
-
-                     <container id="ecom-mainarea">
-                        <!-- by default will render left-bar only if left/rightbarScreenName value not empty -->
-                        <container id="div1" style="left"><include-screen name="${leftbarScreenName}" location="${leftbarScreenLocation}"/></container>
-                        <container id="div2" style="right"><include-screen name="${rightbarScreenName}" location="${rightbarScreenLocation}"/></container>
-
-                        <container id="div3" style="${MainColumnStyle}">
-                           <!-- render messages -->
-                           <platform-specific><html><html-template location="component://common/webcommon/includes/messages.ftl"/></html></platform-specific>
-                           <decorator-section-include name="body"/>
-                        </container>
-
-                        <container id="div4" style="endcolumns"/>
-                    </container>
-
-                    <!-- render footer -->
-                    <container id="footer"><platform-specific><html><html-template location="${footerTemplateLocation}"/></html></platform-specific></container>
-                    <platform-specific><html><html-template location="component://common/webcommon/includes/closehtmlbody.ftl"/></html></platform-specific>
-                  </widgets>
-                  <fail-widgets>
-                     <label text="A Product Store has not been defined for this ecommerce site.  A Product Store can be created using the ofbizsetup wizard."/>
-                  </fail-widgets>
+               		<widgets>
+               			<platform-specific>
+               				<html>
+               					<html-template location="component://ecommerce/webapp/ecommerce/includes/shop/header.ftl"/>
+               				</html>
+               			</platform-specific>
+               		</widgets>
+               </section>
+               <section>
+               		<widgets>
+               			<platform-specific>
+               				<html>
+               					<html-template location="component://ecommerce/webapp/ecommerce/includes/shop/display.ftl"/>
+               				</html>
+               			</platform-specific>
+               		</widgets>
+               </section>
+               <section>
+               		<widgets>
+               			<decorator-screen name="container-decorator">
+               				<decorator-section name="rightcontent">
+               					<decorator-section-include name="body"/>
+               				</decorator-section>
+               			</decorator-screen>
+               		</widgets>
+               </section>
+               <section>
+               		<widgets>
+               			<platform-specific>
+               				<html>
+               					<html-template location="component://ecommerce/webapp/ecommerce/includes/shop/footer.ftl"/>
+               				</html>
+               			</platform-specific>
+               		</widgets>
                </section>
             </widgets>
         </section>
     </screen>
+    
+    <screen name="container-decorator">
+    	<section>
+    		<widgets>
+    			<platform-specific>
+	         		<html>
+	         			<html-template location="component://ecommerce/webapp/ecommerce/includes/shop/containerbegin.ftl"/>
+	         		</html>
+         		</platform-specific>
+         		<platform-specific>
+	         		<html>
+	         			<html-template location="component://ecommerce/webapp/ecommerce/includes/shop/leftbar.ftl"/>
+	         		</html>
+         		</platform-specific>
+         		<decorator-section-include name="rightcontent"/>
+         		<platform-specific>
+	         		<html>
+	         			<html-template location="component://ecommerce/webapp/ecommerce/includes/shop/containerend.ftl"/>
+	         		</html>
+         		</platform-specific>
+    		</widgets>
+    	</section>
+    </screen>
+    
 
     <!-- Side Columns -->
     <screen name="leftbar">
@@ -217,6 +245,35 @@ under the License.
                     <include-screen name="minilastproductsearches" location="component://ecommerce/widget/CatalogScreens.xml"/>
                     <include-screen name="recentlyviewed" location="component://ecommerce/widget/ContentScreens.xml"/>
                     <include-screen name="populartags" location="component://ecommerce/widget/CatalogScreens.xml"/>
+            </widgets>
+        </section>
+    </screen>
+    
+    <!-- 前台主视图 -->
+    <screen name="main">
+        <section>
+            <actions>
+                <set field="leftbarScreenName" value="leftbar"/>
+                <set field="rightbarScreenName" value="rightbar"/>
+                <set field="MainColumnStyle" value="center"/>
+
+                <set field="titleProperty" value="PageTitleMain"/>
+                <set field="headerItem" value="main"/>
+                <set field="randomSurveyGroup" value="testSurveyGroup"/>
+
+                <script location="component://ecommerce/webapp/ecommerce/WEB-INF/actions/Main.groovy"/>
+                <script location="component://order/webapp/ordermgr/WEB-INF/actions/entry/catalog/Category.groovy"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="main-decorator-home" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <platform-specific>
+                            <html>
+                            	<html-template location="component://ecommerce/webapp/ecommerce/includes/shop/body.ftl"/>
+                            </html>
+                        </platform-specific>
+                    </decorator-section>
+                </decorator-screen>
             </widgets>
         </section>
     </screen>
@@ -379,34 +436,6 @@ under the License.
         </section>
     </screen>
 
-    <!-- 前台主视图 -->
-    <screen name="main">
-        <section>
-            <actions>
-                <set field="leftbarScreenName" value="leftbar"/>
-                <set field="rightbarScreenName" value="rightbar"/>
-                <set field="MainColumnStyle" value="center"/>
-
-                <set field="titleProperty" value="PageTitleMain"/>
-                <set field="headerItem" value="main"/>
-                <set field="randomSurveyGroup" value="testSurveyGroup"/>
-
-                <script location="component://ecommerce/webapp/ecommerce/WEB-INF/actions/Main.groovy"/>
-                <script location="component://order/webapp/ordermgr/WEB-INF/actions/entry/catalog/Category.groovy"/>
-            </actions>
-            <widgets>
-                <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
-                    <decorator-section name="body">
-                        <platform-specific>
-                            <html>
-                            	<html-template location="component://ecommerce/webapp/ecommerce/main.ftl"/>
-                            </html>
-                        </platform-specific>
-                    </decorator-section>
-                </decorator-screen>
-            </widgets>
-        </section>
-    </screen>
     <screen name="login">
         <section>
             <actions>
